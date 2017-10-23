@@ -4,3 +4,6 @@ src/bin
 src/obj
 *.log
 *.user
+samples/SamplesConsoleExcel/bin
+samples/SamplesConsoleExcel/obj
+samples/SamplesConsoleExcel/Export

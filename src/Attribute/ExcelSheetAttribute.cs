@@ -35,7 +35,7 @@ namespace TianCheng.Excel
         /// <summary>
         /// 默认的Sheet名称
         /// </summary>
-        private const string DefaultSheetName = "Sheet1";
+        public const string DefaultSheetName = "Sheet1";
 
         /// <summary>
         /// 构造方法

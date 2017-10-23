@@ -21,7 +21,7 @@ namespace TianCheng.Excel
         {
             //设置文件信息
             string dir = System.IO.Path.GetDirectoryName(excelFile);
-            if(!System.IO.Directory.Exists(dir))
+            if (!System.IO.Directory.Exists(dir))
             {
                 System.IO.Directory.CreateDirectory(dir);
             }
@@ -35,7 +35,7 @@ namespace TianCheng.Excel
                     file = new FileInfo(excelFile);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new Exception("文件被占用，无法操作。");
             }
@@ -73,7 +73,7 @@ namespace TianCheng.Excel
                     }
                     startRow++;
                 }
-                package.Save(); 
+                package.Save();
             }
             return file.FullName;
 
@@ -109,6 +109,11 @@ namespace TianCheng.Excel
             {
                 throw new Exception("无法找到要导入的Excel文件。");
             }
+            if (mapping == null)
+            {
+                throw new Exception("对象与Excel的映射关系没有设置，请在对象上增加 ExcelSheetAttribute 特性");
+            }
+
             try
             {
                 using (ExcelPackage package = new ExcelPackage(file))
@@ -116,7 +121,8 @@ namespace TianCheng.Excel
                     StringBuilder sb = new StringBuilder();
                     //获取Sheet信息,如果按Sheet名称取不到，就取第一个Sheet页
                     ExcelWorksheet worksheet = null;
-                    worksheet = package.Workbook.Worksheets[mapping.SheetName];
+                    string sheetName = (mapping == null || String.IsNullOrEmpty(mapping.SheetName)) ? ExcelSheetAttribute.DefaultSheetName : mapping.SheetName;
+                    worksheet = package.Workbook.Worksheets[sheetName];
                     if (worksheet == null)
                     {
                         worksheet = package.Workbook.Worksheets[1];
@@ -132,11 +138,11 @@ namespace TianCheng.Excel
                     for (; startRow <= rowCount; startRow++)
                     {
                         T t = new T();
-                        SetRowIndex(t, type, startRow);
                         foreach (var map in mapping.ColumnMapping)
                         {
                             ObjectProperty.Set(t, map.Property, worksheet.Cells[startRow, map.Index].Value);
                         }
+                        SetRowIndex(t, type, startRow);
                         result.Add(t);
                     }
 
@@ -145,14 +151,14 @@ namespace TianCheng.Excel
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("Excel 文件格式不正确，无法读取文件中的数据。");
             }
         }
 
-        static private void SetRowIndex(object instance, TypeInfo typeInfo,int rowIndex)
+        static private void SetRowIndex(object instance, TypeInfo typeInfo, int rowIndex)
         {
             PropertyInfo pi = typeInfo.GetProperty("RowIndex");
-            if(pi!= null)
+            if (pi != null)
             {
                 ObjectProperty.Set(instance, pi, rowIndex);
             }
