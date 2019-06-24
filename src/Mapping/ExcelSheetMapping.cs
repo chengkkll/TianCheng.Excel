@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TianCheng.Excel
 {
@@ -27,15 +25,9 @@ namespace TianCheng.Excel
         /// </summary>
         public string TypeFullName { get; set; }
 
-        private List<ExcelColumnMapping> _ColumnMapping = new List<ExcelColumnMapping>();
         /// <summary>
         /// 列的关系
         /// </summary>
-        public List<ExcelColumnMapping> ColumnMapping
-        {
-            get { return _ColumnMapping; }
-            set { _ColumnMapping = value; }
-        }
-
+        public List<ExcelColumnMapping> ColumnMapping { get; set; } = new List<ExcelColumnMapping>();
     }
 }

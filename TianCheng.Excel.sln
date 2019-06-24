@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TianCheng.Excel", "src\TianCheng.Excel.csproj", "{119E64B6-80A5-495A-B1FA-5174C34B933A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{01B7FBA2-F570-48CA-B23C-493FA49BC930}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplesConsoleExcel", "samples\SamplesConsoleExcel\SamplesConsoleExcel.csproj", "{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{119E64B6-80A5-495A-B1FA-5174C34B933A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{119E64B6-80A5-495A-B1FA-5174C34B933A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{119E64B6-80A5-495A-B1FA-5174C34B933A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2E58AD4-3219-49BD-8BCF-9B7E371A4FDD} = {01B7FBA2-F570-48CA-B23C-493FA49BC930}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {114F459E-8531-4EFF-B278-BA736A31B444}

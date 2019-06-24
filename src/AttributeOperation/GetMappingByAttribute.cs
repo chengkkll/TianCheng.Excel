@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Linq;
+using System.Reflection;
 
 namespace TianCheng.Excel
 {
@@ -30,12 +28,12 @@ namespace TianCheng.Excel
         /// <summary>
         /// 在程序集对象的映射关系
         /// </summary>
-        /// <param name="assemblyName"></param>
+        /// <param name="assembly"></param>
         /// <returns></returns>
         static private List<ExcelSheetMapping> GetSheetMapping(Assembly assembly)
         {
             List<ExcelSheetMapping> mappingList = new List<ExcelSheetMapping>();
-            
+
             foreach (var type in assembly.GetTypes())
             {
                 TypeInfo ti = type.GetTypeInfo();
@@ -45,19 +43,21 @@ namespace TianCheng.Excel
                     continue;   //如果类中不包含Excel导出导出特性跳过。
                 }
 
-                ExcelSheetMapping sheet = new ExcelSheetMapping();
-                sheet.TypeName = type.Name;
-                sheet.TypeFullName = type.FullName;
-                sheet.SheetName = attribute.SheetName;
-                sheet.HasTitle = attribute.HasTitle;
-                //根据特性设置每一个属性值的情况
-                sheet.ColumnMapping = GetColumnMapping(ti);
-                if(sheet.ColumnMapping.Count <=0)
+                ExcelSheetMapping sheet = new ExcelSheetMapping
+                {
+                    TypeName = type.Name,
+                    TypeFullName = type.FullName,
+                    SheetName = attribute.SheetName,
+                    HasTitle = attribute.HasTitle,
+                    //根据特性设置每一个属性值的情况
+                    ColumnMapping = GetColumnMapping(ti)
+                };
+                if (sheet.ColumnMapping.Count <= 0)
                 {
                     continue;
                 }
 
-                mappingList.Add(sheet); 
+                mappingList.Add(sheet);
             }
 
             return mappingList;
@@ -73,7 +73,7 @@ namespace TianCheng.Excel
         {
             List<ExcelColumnMapping> mapping = new List<ExcelColumnMapping>();
             //循环设置每一个拥有导入导出特性的属性信息
-            foreach(PropertyInfo prop in typeInfo.GetProperties())
+            foreach (PropertyInfo prop in typeInfo.GetProperties())
             {
                 try
                 {
@@ -82,15 +82,17 @@ namespace TianCheng.Excel
                     {
                         continue;
                     }
-                    ExcelColumnMapping column = new ExcelColumnMapping();
-                    column.ColName = attribute.ColName;
-                    column.Index = attribute.Index;
-                    column.Title = attribute.Title;
-                    column.PropertyName = prop.Name;
-                    column.Property = prop;
+                    ExcelColumnMapping column = new ExcelColumnMapping
+                    {
+                        ColName = attribute.ColName,
+                        Index = attribute.Index,
+                        Title = attribute.Title,
+                        PropertyName = prop.Name,
+                        Property = prop
+                    };
                     mapping.Add(column);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     throw;
                 }

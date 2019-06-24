@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TianCheng.Excel
+﻿namespace TianCheng.Excel
 {
+    /// <summary>
+    /// 导入的实体对象接口定义
+    /// </summary>
     public interface IImportExcelModel
     {
         /// <summary>

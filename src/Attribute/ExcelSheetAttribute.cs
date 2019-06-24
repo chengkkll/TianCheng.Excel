@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TianCheng.Excel
 {
@@ -49,8 +47,8 @@ namespace TianCheng.Excel
         /// <summary>
         /// 构造方法
         /// </summary>_
-        /// <param name="title">标题</param>
-        /// <param name="index">列的序号</param>
+        /// <param name="sheetName">标题</param>
+        /// <param name="hasTitle">列的序号</param>
         public ExcelSheetAttribute(string sheetName, bool hasTitle = true)
         {
             if (String.IsNullOrEmpty(sheetName))

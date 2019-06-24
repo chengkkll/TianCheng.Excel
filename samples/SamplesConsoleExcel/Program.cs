@@ -9,7 +9,7 @@ namespace SamplesConsoleExcel
         static void Main(string[] args)
         {
             // 读取Excel文件中的内容到一个对象列表中
-            List<DemoInfo> result = TianCheng.Excel.ExcelHelper.Import<DemoInfo>("Files/Test.xlsx");
+            List<DemoInfo> result = TianCheng.Excel.ExcelHelper.Import<DemoInfo>("../../../Files/Test.xlsx");
 
             Console.WriteLine($"共读取出{result.Count}条信息");
             foreach (var item in result)

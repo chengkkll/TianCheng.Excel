@@ -13,9 +13,9 @@ namespace SamplesConsoleExcel.Model
     public class DemoInfo
     {
         /// <summary>
-        /// 企业名称
+        /// 名称
         /// </summary>
-        [ExcelColumn("企业名称", "A")]
+        [ExcelColumn("名称", "A")]
         public string Name { get; set; }
 
         /// <summary>

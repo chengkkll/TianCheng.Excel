@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace TianCheng.Excel
 {
@@ -11,9 +9,9 @@ namespace TianCheng.Excel
     internal class ObjectProperty
     {
 
-        private static string IntType = typeof(int).FullName;
-        private static string StringType = typeof(String).FullName;
-        private static string BoolType = typeof(bool).FullName;
+        private static readonly string IntType = typeof(int).FullName;
+        private static readonly string StringType = typeof(string).FullName;
+        private static readonly string BoolType = typeof(bool).FullName;
 
         /// <summary>
         /// 设置对象属性
@@ -30,15 +28,13 @@ namespace TianCheng.Excel
             }
             else if (property.PropertyType.FullName == IntType)
             {
-                int iv = 0;
-                int.TryParse(Convert.ToString(val), out iv);
+                int.TryParse(Convert.ToString(val), out int iv);
                 property.SetValue(instance, iv);
                 return;
             }
             else if (property.PropertyType.FullName == BoolType)
             {
-                bool test = false;
-                bool.TryParse(Convert.ToString(val), out test);
+                bool.TryParse(Convert.ToString(val), out bool test);
                 property.SetValue(instance, test);
                 return;
             }

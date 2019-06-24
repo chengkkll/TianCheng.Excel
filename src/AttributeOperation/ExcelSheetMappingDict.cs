@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TianCheng.Excel
 {
@@ -10,19 +9,15 @@ namespace TianCheng.Excel
     internal class ExcelSheetMappingDict
     {
         #region  获取一个对象实例
-        static private ExcelSheetMappingDict _Instance = new ExcelSheetMappingDict();
+        /// <summary>
+        /// 
+        /// </summary>
+        static public ExcelSheetMappingDict Instance { get; } = new ExcelSheetMappingDict();
 
-        static public ExcelSheetMappingDict Instance
-        {
-            get
-            {
-                return _Instance;
-            }
-        }
         #endregion 获取一个对象实例
 
         #region 初始化对象
-        private Dictionary<string, ExcelSheetMapping> SheetMapping;
+        private readonly Dictionary<string, ExcelSheetMapping> SheetMapping;
         /// <summary>
         /// 构造方法
         /// </summary>
@@ -54,7 +49,7 @@ namespace TianCheng.Excel
                 {
                     return null;
                 }
-                
+
                 return SheetMapping[index];
             }
         }

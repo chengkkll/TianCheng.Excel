@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TianCheng.Excel
 {
@@ -10,15 +9,10 @@ namespace TianCheng.Excel
     internal class ExcelColumnIndexTran
     {
         #region  获取一个对象实例
-        static private ExcelColumnIndexTran _Instance = new ExcelColumnIndexTran();
-
-        static public ExcelColumnIndexTran Instance
-        {
-            get
-            {
-                return _Instance;
-            }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        static public ExcelColumnIndexTran Instance { get; } = new ExcelColumnIndexTran();
         #endregion 获取一个对象实例
         /// <summary>
         /// 按序号查询的字典

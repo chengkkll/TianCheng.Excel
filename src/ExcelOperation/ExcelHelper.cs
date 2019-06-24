@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Reflection;
+using System.Text;
 
 namespace TianCheng.Excel
 {
@@ -122,6 +122,10 @@ namespace TianCheng.Excel
                     //获取Sheet信息,如果按Sheet名称取不到，就取第一个Sheet页
                     ExcelWorksheet worksheet = null;
                     string sheetName = (mapping == null || String.IsNullOrEmpty(mapping.SheetName)) ? ExcelSheetAttribute.DefaultSheetName : mapping.SheetName;
+                    if (package.Workbook == null || package.Workbook.Worksheets == null)
+                    {
+                        throw new Exception("无法读取Excel文件中的Sheet页信息");
+                    }
                     worksheet = package.Workbook.Worksheets[sheetName];
                     if (worksheet == null)
                     {
@@ -151,7 +155,7 @@ namespace TianCheng.Excel
             }
             catch (Exception)
             {
-                throw new Exception("Excel 文件格式不正确，无法读取文件中的数据。");
+                throw new Exception("Excel 文件格式不正确，或数据太大无法读取文件中的数据。建议数据不要超过5千行");
             }
         }
 
@@ -163,32 +167,6 @@ namespace TianCheng.Excel
                 ObjectProperty.Set(instance, pi, rowIndex);
             }
         }
-
-        //public static string IntType = typeof(int).FullName;
-        //public static string StringType = typeof(String).FullName;
-        ///// <summary>
-        ///// 设置对象属性
-        ///// </summary>
-        ///// <param name="instance"></param>
-        ///// <param name="property"></param>
-        ///// <param name="val"></param>
-        //static private void SetObjectProperty(object instance, PropertyInfo property, object val)
-        //{
-        //    if (property.PropertyType.FullName == StringType)
-        //    {
-        //        property.SetValue(instance, Convert.ToString(val));
-        //        return;
-        //    }
-        //    else if (property.PropertyType.FullName == IntType)
-        //    {
-        //        int iv = 0;
-        //        int.TryParse(Convert.ToString(val), out iv);
-
-        //        property.SetValue(instance, iv);
-        //        return;
-        //    }
-        //}
         #endregion 数据导入
-
     }
 }

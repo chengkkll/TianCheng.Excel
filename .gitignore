@@ -1,9 +1,11 @@
 .git
 .vs
-src/bin
-src/obj
+.vscode
+[Bb]in/
+[Oo]bj/
+[Ll]ogs/
+
 *.log
 *.user
-samples/SamplesConsoleExcel/bin
-samples/SamplesConsoleExcel/obj
-samples/SamplesConsoleExcel/Export
+
+Export/
